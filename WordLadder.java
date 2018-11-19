@@ -63,7 +63,6 @@ public class WordLadder {
                         }
                         System.out.println();
                         System.out.println("set has" + set);
-                        break;
                     }
                 }
             }

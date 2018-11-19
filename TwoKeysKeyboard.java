@@ -7,7 +7,7 @@ public class TwoKeysKeyboard {
         int i5 = 5;
         int i6 = 6;
         int i10 = 10;
-        System.out.println(minSteps(i1));
+        System.out.println(minSteps(7));
         System.out.println(minSteps(i2));
         System.out.println(minSteps(i3));
         System.out.println(minSteps(i4));

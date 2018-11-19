@@ -1,61 +1,54 @@
 public class MergeSort {
     public int[] mergeSort(int[] nums) {
-        return merge(nums);
+        merge(nums,0,nums.length-1);
+        return nums;
     }
 
-
-    private int[] merge(int[] nums) {
-        if (nums.length <= 0) {
-            return null;
+    private void merge(int[] nums,int start,int end) {
+        if (end - start <= 0) {
+            return;
         }
-        if (nums.length == 1) {
-
-            return nums;
-        }
-        if (nums.length == 2) {
-            if (nums[0] > nums[1]) {
-                int temp = nums[0];
-                nums[0] = nums[1];
-                nums[1] = temp;
+        if (end - start == 1) {
+            if (nums[start] > nums[end]) {
+                int temp = nums[start];
+                nums[start] = nums[end];
+                nums[end] = temp;
             }
-            return nums;
         }
-        int n = nums.length;
-        int[] left = new int[n/2];
-        for(int i = 0; i < n/2;i++){
-            left[i] = nums[i];
-        }
-        int[] right = new int[n-n/2];
-        for(int i = 0; i < n-n/2;i++){
-            right[i] = nums[n/2+i];
-        }
-        left = merge(left);
-        right = merge(right);
-        int[] result = new int[n];
-        int i = left.length-1;
-        int j = right.length-1;
-        int k = n - 1;
-        while(i >= 0 && j >= 0){
-            if(left[i] >= right[j]){
-                result[k] = left[i];
+
+        int n = (end - start) / 2;
+        merge(nums,start,start+n);
+        merge(nums,start+n+1,end);
+
+
+        int i = start + n;
+        int j = end;
+        int[] result = new int[end-start+1];
+        int k = result.length - 1;
+
+        while(i >= start && j >= start+n+1){
+            if(nums[i] > nums[j]){
+                result[k] = nums[i];
                 i--;
             } else {
-                result[k] = right[j];
+                result[k] = nums[j];
                 j--;
             }
             k--;
         }
-        while(i>=0){
-            result[k] = left[i];
+        while(i>=start){
+            result[k] = nums[i];
             i--;
             k--;
         }
-        while(j>=0){
-            result[k] = right[j];
+        while(j>=start+n+1){
+            result[k] = nums[j];
             j--;
             k--;
         }
-        return result;
+        for(int m = start; m <= end; m++){
+            nums[m] = result[m-start];
+        }
     }
 
 }

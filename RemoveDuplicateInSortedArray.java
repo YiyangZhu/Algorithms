@@ -1,23 +1,14 @@
 public class RemoveDuplicateInSortedArray {
-    public static void main(String[] args) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("AB");
-        sb.append('C');
-        System.out.println(sb.length());
-    }
-
-    public static int removeDuplicates(int[] nums) {
-        if(nums == null || nums.length < 1){
-            return 0;
-        }
-        int i = 0;
+    public int removeDuplicates(int[] nums) {
         int j = 0;
-        for(i = 0; i < nums.length;i++){
-            if(nums[i] > nums[j]){
-                j++;
+        for(int i = 0; i < nums.length;i++){
+            if(i != 0 && nums[i] == nums[i - 1]){
+                continue;
+            } else {
                 nums[j] = nums[i];
+                j++;
             }
         }
-        return j+1;
+        return j;
     }
 }

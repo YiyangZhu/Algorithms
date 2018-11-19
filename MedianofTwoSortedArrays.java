@@ -1,6 +1,6 @@
 public class MedianofTwoSortedArrays {
     public static void main(String[] args) {
-        int[] nums1 = {1,2};
+        int[] nums1 = {1,2,3};
         int[] nums2 = {4,5,6};
         System.out.println(findMedianSortedArrays(nums1, nums2));
     }

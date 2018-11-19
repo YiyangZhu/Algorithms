@@ -3,7 +3,7 @@ import java.util.TreeSet;
 
 public class ContainsDuplicateThree {
     public static void main(String[] args) {
-        
+
     }
 
     public static boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {

@@ -1,21 +1,34 @@
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class ContainsDuplicate {
     public static void main(String[] args) {
-       int[] array = {1,1,1,3,3,4,3,2,4,2};
-        System.out.println(containsDuplicate(array));
+       int[] array = {1,2,3,1};
+       int k = 3;
+        System.out.println(containsNearbyDuplicate(array,k));
     }
 
-    public static boolean containsDuplicate(int[] nums) {
-        if(nums == null || nums.length <= 1){
+    public static boolean containsNearbyDuplicate(int[] nums, int k) {
+        if(nums == null || nums.length < 1){
             return false;
         }
-        HashSet<Integer> set = new HashSet<>();
-        for(int i: nums){
-            if(set.contains(i)){
-                return true;
+        HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+        for(int i = 0; i < nums.length;i++){
+            if(map.containsKey(nums[i])){
+                ArrayList<Integer> list0 = map.get(nums[i]);
+                for(int index: list0){
+                    System.out.println("i="+i+"\tindex="+index);
+                    if((i - index) <= k){
+                        return true;
+                    }
+                }
+                list0.add(i);
+                map.put(nums[i], list0);
             } else {
-                set.add(i);
+                ArrayList<Integer> list1 = new ArrayList<>();
+                list1.add(i);
+                map.put(nums[i], list1);
             }
         }
         return false;
