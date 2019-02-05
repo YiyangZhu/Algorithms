@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c0b13696-5ecc-4a8d-87b2-b6cc57fc55be" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../AbstractTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AddBinary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AddTwoList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AddTwoNumbers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BagOfPrimitives.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BitCharacters.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Chapter1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClosestBSTValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClosestBinarySearchTreeValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CompareVersionNumber.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ConstructTreeInorderPost.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ContainsDuplicate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ContainsDuplicateThree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ContainsDuplicatesTwo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ConvertExcelTitle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DIStringMatch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DecodeWays.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DeleteColumnstoMakeSorted.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DistinctSubsequencesII.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EightQueens.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EvaluateReversePolishNotation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FiboDP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindtheShortestSuperstring.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlattenBT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FourSum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Game24.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HashMapPractice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Helper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ImplementStr.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ImplementingQUseStack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ImplementstrStr.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InorderSuccessorinBST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InsertInterval.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IntegerToEnglishWords.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IntersectionLinkedLists.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IsPrime.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IsSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IsomorphicStrings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JumpGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LRUCache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LargestBSTSubtree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LengthofLastWord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ListNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ListPractice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LongPalindromeSubSBF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LongPalindromeSubSDP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LongestConsecutiveSequence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LongestIncreasingSubsequence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LongestPalindromicSubstring.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LongestSubstringNoRepeat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LongestValidParenthesis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MapReduce.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MaxSubArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MaxTemperatureMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MaximumSubarray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MedianTwoSortArrayDiffSize.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MedianofTwoSortedArrays.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MergeIntervals.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MergeKSortedLists.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MergeSort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MergeSortedArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MergeTwoSortedArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MergeTwoSortedLists.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimumAreaRectangle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimumSizeSubarraySum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MoveZeroes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NQueen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NumberOf1Bit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PathSum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pattern132.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pattern132BF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pattern132BF2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Permutation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PermutationTwo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProductofArrayExceptSelf.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickSort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RangeSumofBST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RecommenderSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RecommenderSystemDraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RecommenderSystemDraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegularExpressionMatch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RemoveDuplicateInSortedArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RemoveDuplicateInSortedArrayTwo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RemoveElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ReorderLogFiles.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ReverseLinkedLis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ReverseWordsinaString.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ReverseWordsinaStringTwo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RomantoInteger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RotateImage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RotateMatrix.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SearchInsertPosition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SearchWord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SetMatrixZeroes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SetZeroes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimplifyPath.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SortColor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpiralMatrix.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StringOddNumber.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StringReverse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StringToInt.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StringToInteger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SwapNodesinPairs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestArrayAndLinkedList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestCollection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestIterator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ThreeSum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ThreeSumClosest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TitleToNumber.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TreeLevelTraversal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TreeNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TreeSymmetric.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Triangle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TwoKeysKeyboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TwoSum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TwoSumTwo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UseJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UseJson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ValidBST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ValidMountainArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ValidP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ValidPalindrome.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ValidParenthesis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WildcardMatching.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordLadder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordSearch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZigzagConversion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZigzagTraversal.java" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1940826852">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c0b13696-5ecc-4a8d-87b2-b6cc57fc55be" name="Default Changelist" comment="" />
+      <created>1549251650329</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1549251650329</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
