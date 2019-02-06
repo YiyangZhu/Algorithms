@@ -39,5 +39,41 @@ public class TrappingRainWater {
         return max;
     }
 
+    public static int trapQuicker(int[] height) {
+        if(height == null || height.length < 1){
+            return 0;
+        }
 
+        int n = height.length;
+
+        int[] leftMax = new int[n];
+        leftMax[0] = 0;
+        int lMax = leftMax[0];
+        for(int i = 1; i < n; i++){
+            leftMax[i] = Math.max(lMax, height[i-1]);
+            lMax = leftMax[i];
+        }
+
+        int[] rightMax = new int[n];
+        rightMax[n-1] = 0;
+        int rMax = 0;
+        for(int i = n - 2; i >= 0; i--){
+            rightMax[i] = Math.max(rMax, height[i + 1]);
+            rMax = rightMax[i];
+        }
+
+
+        int sum = 0;
+        for (int i = 0; i < height.length;i++){
+            int waterLevel = Math.min(leftMax[i],rightMax[i]);
+            int waterAmount = waterLevel - height[i];
+            if(waterAmount <= 0){
+                continue;
+            } else {
+                sum += waterAmount;
+            }
+        }
+        return sum;
+
+    }
 }
