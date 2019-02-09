@@ -1,5 +1,7 @@
 package G;
 
+import java.util.HashSet;
+
 public class LongestConsecutiveSequence {
     public static int longestConsecutive(int[] nums) {
         if(nums == null || nums.length == 0){
@@ -59,5 +61,35 @@ public class LongestConsecutiveSequence {
             }
         }
         return totalMax;
+    }
+
+    public static int longestConsecutiveSet(int[] nums) {
+        if(nums == null || nums.length == 0){
+            return 0;
+        }
+        HashSet<Integer> set = new HashSet<>();
+        for(int i: nums){
+            set.add(i);
+        }
+        int maxLen = 1;
+        for(int i: nums){
+            int left = i-1;
+            int right = i+1;
+            int count = 1;
+            while(set.contains(left)){
+
+                set.remove(left);
+                left--;
+                count++;
+            }
+            while(set.contains(right)){
+                set.remove(right);
+                right++;
+                count++;
+            }
+            maxLen = Math.max(maxLen,count );
+        }
+        return maxLen;
+
     }
 }
