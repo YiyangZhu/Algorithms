@@ -45,7 +45,31 @@ public class MaximumProductOfWordLengths {
         return result;
     }
 
-    public static int maxProduct(String[] words) {
-        
+    public static int maxProductBitMap(String[] words) {
+        if (words == null || words.length == 0) {
+            return 0;
+        }
+
+        int n = words.length;
+        int[] bitMap = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            String word = words[i];
+            for (int j = 0; j < word.length(); j++) {
+                bitMap[i] |= 1 << word.charAt(j) - 'a';
+
+            }
+        }
+
+        int result = 0;
+        for (int i = 0; i < n; i++) {
+            for(int j = i + 1; j < n; j++){
+                if((bitMap[i] & bitMap[j]) == 0){
+                    result = Math.max(result, words[i].length()*words[j].length());
+
+                }
+            }
+        }
+        return result;
     }
 }
