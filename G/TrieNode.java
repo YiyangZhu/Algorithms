@@ -3,14 +3,11 @@ package G;
 import java.util.HashMap;
 
 public class TrieNode {
-    char c;
+    char ch;
     HashMap<Character, TrieNode> children = new HashMap<>();
-    boolean isLeaf;
+    boolean isWord = false;
 
-    public TrieNode(){
-
-    }
-    public TrieNode(char c){
-        this.c = c;
+    TrieNode(char c){
+        this.ch = c;
     }
 }

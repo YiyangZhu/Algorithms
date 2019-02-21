@@ -1,78 +1,59 @@
 package G;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Trie {
     TrieNode root;
 
     public Trie(){
-        root = new TrieNode();
+        root = new TrieNode('0');
     }
 
-    /** Inserts a word into the trie. */
     public void insert(String word) {
-
-        HashMap<Character, TrieNode> children = root.children;
-
+        TrieNode node = root;
         for(int i = 0; i < word.length(); i++){
             char c = word.charAt(i);
-
-            TrieNode t;
-
-            if(children.containsKey(c)){
-                t = children.get(c);
-            } else {
-                t = new TrieNode(c);
-                children.put(c,t);
+            if(!node.children.containsKey(c)){
+                node.children.put(c,new TrieNode(c) );
             }
-
-            children = t.children;
-
-            if(i == word.length() - 1){
-
-                t.isLeaf = true;
+            node = node.children.get(c);
+            if(i == word.length()-1){
+                node.isWord = true;
             }
         }
-
     }
 
     public boolean search(String word) {
         TrieNode node = searchTrieNode(word);
-        if(node != null && node.isLeaf){
-            return true;
-        } else {
-            return false;
-        }
+        return node != null && node.isWord;
+
     }
 
     public TrieNode searchTrieNode(String word){
-        Map<Character, TrieNode> children = root.children;
-        TrieNode t = null;
-        for(int i = 0; i < word.length(); i++){
+        TrieNode node = root;
+        for(int i = 0; i < word.length();i++){
             char c = word.charAt(i);
-            if(children.containsKey(c)){
-                t = children.get(c);
-                children = t.children;
-            } else {
+            if(!node.children.containsKey(c)){
                 return null;
             }
+            node = node.children.get(c);
+            if(i == word.length() - 1){
+                return node;
+            }
         }
-        return t;
-
+        return null;
 
     }
 
     public boolean startsWith(String prefix) {
-        HashMap<Character, TrieNode> children = root.children;
-        for(int i = 0; i < prefix.length(); i++){
-            char c = prefix.charAt(i);
-            if(!children.containsKey(c)){
-                return false;
-            } else {
-                children = children.get(c).children;
-            }
-        }
-        return true;
+        TrieNode node = searchTrieNode(prefix);
+        return node != null;
     }
 }
+
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
+ * obj.insert(word);
+ * boolean param_2 = obj.search(word);
+ * boolean param_3 = obj.startsWith(prefix);
+ */
