@@ -1,38 +1,7 @@
-package G;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-
-class ReplaceWord {
-    public String replaceWords(List<String> dict, String sentence) {
-        String[] array = sentence.split(" ");
-        HashSet<String> set = new HashSet<>(dict);
-
-        StringBuilder result = new StringBuilder();
-        for(String s: array){
-            String newS = replace(s,set);
-            result.append(" ");
-            result.append(newS);
-        }
-
-        return result.toString().trim();
-    }
-
-    public String replace(String s, HashSet<String> set){
-        for(int i = 0; i < s.length(); i++){
-            String sub = s.substring(0,i+1);
-
-            if(set.contains(sub)){
-                return sub;
-            }
-        }
-        return s;
-    }
-
+public class ReplaceWords {
     class TrieNode {
         char ch;
-        HashMap<Character, TrieNode> children = new HashMap<>();
+        TrieNode[] children = new TrieNode[26];
         boolean isWord = false;
 
         TrieNode(char c){
@@ -51,10 +20,10 @@ class ReplaceWord {
             TrieNode node = root;
             for(int i = 0; i < word.length(); i++){
                 char c = word.charAt(i);
-                if(!node.children.containsKey(c)){
-                    node.children.put(c,new TrieNode(c) );
+                if(node.children[c-'a'] == null){
+                    node.children[c-'a'] = new TrieNode(c);
                 }
-                node = node.children.get(c);
+                node = node.children[c-'a'];
                 if(i == word.length()-1){
                     node.isWord = true;
                 }
@@ -109,18 +78,17 @@ class ReplaceWord {
             String[] array = sentence.split(" ");
             Trie trie = new Trie();
 
-            StringBuilder result = new StringBuilder();
+            String result = "";
             for(String s: dict){
                 trie.insert(s);
             }
 
             for(String s: array){
                 String newS = trie.findPrefix(s,0,trie.root);
-                result.append(" ");
-                result.append(newS);
+                result = result + " " + newS;
             }
 
-            return result.toString().trim();
+            return result.trim();
         }
     }
 }
