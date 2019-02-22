@@ -1,3 +1,7 @@
+package G;
+
+import java.util.List;
+
 public class ReplaceWords {
     class TrieNode {
         char ch;
@@ -40,10 +44,10 @@ public class ReplaceWords {
             TrieNode node = root;
             for(int i = 0; i < word.length();i++){
                 char c = word.charAt(i);
-                if(!node.children.containsKey(c)){
+                if(node.children[c-'a'] == null){
                     return null;
                 }
-                node = node.children.get(c);
+                node = node.children[c-'a'];
                 if(i == word.length() - 1){
                     return node;
                 }
@@ -62,11 +66,11 @@ public class ReplaceWords {
                 return word;
             }
             char c = word.charAt(i);
-            if(node.children.containsKey(c)){
-                if(node.children.get(c).isWord){
+            if(node.children[c-'a'] != null){
+                if(node.children[c-'a'].isWord){
                     return word.substring(0,i + 1);
                 } else {
-                    return findPrefix(word, i + 1, node.children.get(c));
+                    return findPrefix(word, i + 1, node.children[c-'a']);
                 }
             }
             return word;
@@ -78,17 +82,18 @@ public class ReplaceWords {
             String[] array = sentence.split(" ");
             Trie trie = new Trie();
 
-            String result = "";
+            StringBuilder result = new StringBuilder();
             for(String s: dict){
                 trie.insert(s);
             }
 
             for(String s: array){
                 String newS = trie.findPrefix(s,0,trie.root);
-                result = result + " " + newS;
+                result.append(" ");
+                result.append(newS);
             }
 
-            return result.trim();
+            return result.toString().trim();
         }
     }
 }
