@@ -1,56 +1,36 @@
 package Trie;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 
 public class PalindromePairs {
-    static ArrayList<List<Integer>> result;
-    static HashMap<String, Integer> map;
+    public List<List<Integer>> palindromePairs(String[] words) {
+        List<List<Integer>> result = new ArrayList<>();
 
-    public static List<List<Integer>> palindromePairs(String[] words) {
-        Trie trie = new Trie();
-        map = new HashMap<>();
-        for(int i = 0; i < words.length; i++){
-            map.put(words[i], i);
-            trie.insert(words[i]);
-        }
+        int len = words.length;
 
-        result = new ArrayList<>();
+        for (int i = 0; i < len; i++) {
+            for (int j = i + 1; j < len; j++) {
+                String s1 = words[i];
+                String s2 = words[j];
 
-        for(String s: words){
-            findPairs(s,trie);
-        }
-        return result;
-    }
+                String pair1 = s1 + s2;
+                String r1 = new StringBuilder(pair1).reverse().toString();
+                if(pair1.equals(r1)){
+                    ArrayList<Integer> current = new ArrayList<>(Arrays.asList(i,j));
+                    result.add(current);
+                }
 
-    public static void findPairs(String s, Trie trie){
-        for(int i = 0; i < s.length(); i++){
-            String left = s.substring(0,i );
-            String right = s.substring(i );
-            if(isPalindrome(left)){
-                if(trie.search((new StringBuilder(right)).reverse().toString())){
-                    List<Integer> aPair = new ArrayList<>();
-                    int i1 = map.get(s);
-                    int i2 = map.get((new StringBuilder(right)).reverse().toString());
-                    aPair.add(i1);
-                    aPair.add(i2);
-                    result.add(aPair);
+                String pair2 = s2 + s1;
+                String r2 = new StringBuilder(pair2).reverse().toString();
+                if(pair2.equals(r2)){
+                    ArrayList<Integer> current = new ArrayList<>(Arrays.asList(j,i));
+                    result.add(current);
                 }
             }
         }
-    }
 
-    public static boolean isPalindrome(String s){
-        int n = s.length();
-        int mid = (n - 1) / 2;
-        for(int i = 0; i <= mid; i++){
-            int leftIndex = i;
-            int rightIndex = n - 1 - i;
-            if(s.charAt(leftIndex) != s.charAt(rightIndex)){
-                return false;
-            }
-        }
-        return true;
+        return result;
     }
 }
