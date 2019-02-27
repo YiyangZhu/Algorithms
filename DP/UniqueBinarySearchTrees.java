@@ -1,6 +1,6 @@
 package DP;
 
-public class UniqueBinarySearchTreesTwo {
+public class UniqueBinarySearchTrees {
     public class TreeNode {
         int val;
         TreeNode left;
