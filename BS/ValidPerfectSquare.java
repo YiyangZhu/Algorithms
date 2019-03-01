@@ -40,4 +40,35 @@ public class ValidPerfectSquare {
 
         return false;
     }
+
+    public boolean isPerfectSquareBS(int num) {
+        if(num <= 0){
+            return false;
+        }
+
+        if(num == 1){
+            return true;
+        }
+
+        int left = 1;
+        int right = num;
+
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            int t = mid * mid;
+            if(t == num){
+                return true;
+            } else {
+                if(left == right){
+                    return false;
+                }
+            }
+            if(t < 0 || t > num){
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return false;
+    }
 }
