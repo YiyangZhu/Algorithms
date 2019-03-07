@@ -30,6 +30,6 @@ public class SymmetricTree {
             return false;
         }
         return helper(l.left, r.right) && helper(l.right, r.left);
-    
+
     }
 }
