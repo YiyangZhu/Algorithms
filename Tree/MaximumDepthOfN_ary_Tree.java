@@ -1,7 +1,6 @@
 package Tree;
 
 import java.util.List;
-import java.util.PriorityQueue;
 
 public class MaximumDepthOfN_ary_Tree {
     class Node {
@@ -17,15 +16,15 @@ public class MaximumDepthOfN_ary_Tree {
         }
     }
 
-    PriorityQueue<Integer> queue;
+    int i;
 
     public int maxDepth(Node root) {
         if(root == null){
             return 0;
         }
-        queue = new PriorityQueue<>((a,b)->(b-a));
+        i = 0;
         help(root,1);
-        return queue.peek();
+        return i;
     }
 
     private void help(Node node, int depth){
@@ -33,7 +32,9 @@ public class MaximumDepthOfN_ary_Tree {
             return;
         }
         if(node.children.size() == 0){
-            queue.add(depth);
+            if(depth > i){
+                i = depth;
+            }
         }
         List<Node> children = node.children;
         for(Node n: children){
