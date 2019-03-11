@@ -19,22 +19,22 @@ public class SmallestStringStartingFromLeaf {
         }
         StringBuilder sb = new StringBuilder();
         PriorityQueue<String> pq = new PriorityQueue<>();
-        help(root,sb,pq);
+        help(root, sb, pq);
         return pq.poll();
     }
 
-    private void help(TreeNode root, StringBuilder sb, PriorityQueue<String> pq){
-        if(root == null){
+    private void help(TreeNode root, StringBuilder sb, PriorityQueue<String> pq) {
+        if (root == null) {
             return;
         }
-        char c = (char)(root.val + 'a');
+        char c = (char) (root.val + 'a');
         sb.append(c);
-        if(root.left == null && root.right == null){
+        if (root.left == null && root.right == null) {
             pq.offer(sb.reverse().toString());
             sb.reverse();
         }
-        help(root.left,sb ,pq );
-        help(root.right,sb,pq);
-        sb.deleteCharAt(sb.length()-1);
+        help(root.left, sb, pq);
+        help(root.right, sb, pq);
+        sb.deleteCharAt(sb.length() - 1);
     }
 }
