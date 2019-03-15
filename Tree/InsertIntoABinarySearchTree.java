@@ -23,4 +23,3 @@ public class InsertIntoABinarySearchTree {
         return root;
     }
 }
-        
