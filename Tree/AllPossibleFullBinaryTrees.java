@@ -21,11 +21,11 @@ public class AllPossibleFullBinaryTrees {
             list.add(new TreeNode(0));
             return list;
         }
-        for (int leftNum = 1; leftNum <= N-1; leftNum += 2) {
+        for (int leftNum = 1; leftNum <= N - 1; leftNum += 2) {
             List<TreeNode> fLeft = allPossibleFBT(leftNum);
-            List<TreeNode> fRight = allPossibleFBT(N-leftNum-1);
-            for (TreeNode left: fLeft) {
-                for (TreeNode right: fRight) {
+            List<TreeNode> fRight = allPossibleFBT(N - leftNum - 1);
+            for (TreeNode left : fLeft) {
+                for (TreeNode right : fRight) {
                     TreeNode node = new TreeNode(0);
                     node.left = left;
                     node.right = right;
@@ -33,7 +33,6 @@ public class AllPossibleFullBinaryTrees {
                 }
             }
         }
-
         return list;
     }
 }
