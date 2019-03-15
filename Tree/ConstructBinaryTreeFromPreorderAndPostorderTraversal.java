@@ -37,7 +37,7 @@ public class ConstructBinaryTreeFromPreorderAndPostorderTraversal {
             root.left = constructFromPrePost(pre1, post1);
             return root;
         } else {
-            
+
             int k1;
             for (k1 = 1; k1 < n; k1++) {
                 if (pre[k1] == post[j]) {
@@ -73,6 +73,48 @@ public class ConstructBinaryTreeFromPreorderAndPostorderTraversal {
             root.right = constructFromPrePost(rightPre, rightPost);
         }
 
+        return root;
+    }
+
+    public TreeNode constructFromPrePost1(int[] pre, int[] post) {
+        return help(pre, post, 0, pre.length - 1, 0, post.length - 1);
+    }
+
+    private TreeNode help(int[] pre, int[] post, int preStart, int preEnd, int postStart, int postEnd) {
+        if (preEnd - preStart < 0) {
+            return null;
+        }
+        if (preEnd - preStart == 0) {
+            return new TreeNode(pre[preStart]);
+        }
+        if (preEnd - preStart == 1) {
+            TreeNode node = new TreeNode(pre[preStart]);
+            node.left = new TreeNode(pre[preEnd]);
+            return node;
+        }
+
+        TreeNode root = new TreeNode(pre[preStart]);
+        int n = preEnd - preStart + 1;
+        int i = preStart + 1;
+        int j = postEnd - 1;
+        if (pre[i] == post[j]) {
+            root.left = help(pre, post, i, preEnd, postStart, j);
+        } else {
+            int k1;
+            for (k1 = preStart; k1 <= preEnd; k1++) {
+                if (pre[k1] == post[j]) {
+                    break;
+                }
+            }
+            int k2;
+            for (k2 = postStart; k2 <= postEnd; k2++) {
+                if (post[k2] == pre[i]) {
+                    break;
+                }
+            }
+            root.left = help(pre, post, i, k1 - 1, postStart, k2);
+            root.right = help(pre, post, k1, preEnd, k2 + 1, postEnd - 1);
+        }
         return root;
     }
 }
