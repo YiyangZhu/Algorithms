@@ -87,11 +87,6 @@ public class ConstructBinaryTreeFromPreorderAndPostorderTraversal {
         if (preEnd - preStart == 0) {
             return new TreeNode(pre[preStart]);
         }
-        if (preEnd - preStart == 1) {
-            TreeNode node = new TreeNode(pre[preStart]);
-            node.left = new TreeNode(pre[preEnd]);
-            return node;
-        }
 
         TreeNode root = new TreeNode(pre[preStart]);
         int n = preEnd - preStart + 1;
