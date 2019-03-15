@@ -70,4 +70,45 @@ public class SmallestSubtreeWithAllTheDeepestNodes {
         buildMap(node.left, node, depth + 1, parentMap, nodeDepthMap);
         buildMap(node.right, node, depth + 1, parentMap, nodeDepthMap);
     }
+
+    public TreeNode subtreeWithAllDeepestMethod2(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        Map<TreeNode, Integer> map = new HashMap<>();
+        buildMap(root, map);
+        return findSubtree(root, map);
+    }
+
+    private int buildMap(TreeNode node, Map<TreeNode, Integer> map) {
+        if (node == null) {
+            return -1;
+        }
+        int left = buildMap(node.left, map);
+        int right = buildMap(node.right, map);
+        int distance = Math.max(left, right) + 1;
+        map.put(node, distance);
+        return distance;
+    }
+
+    private TreeNode findSubtree(TreeNode root, Map<TreeNode, Integer> map) {
+        if (root.left == null && root.right == null) {
+            return root;
+        }
+        if (root.left == null) {
+            return findSubtree(root.right, map);
+        }
+        if (root.right == null) {
+            return findSubtree(root.left, map);
+        }
+        int left = map.get(root.left);
+        int right = map.get(root.right);
+        if (left == right) {
+            return root;
+        } else if (left > right) {
+            return findSubtree(root.left, map);
+        } else {
+            return findSubtree(root.right, map);
+        }
+    }
 }
