@@ -16,62 +16,58 @@ public class SmallestSubtreeWithAllTheDeepestNodes {
         }
     }
 
+    int max;
+    List<TreeNode> list;
+
     public TreeNode subtreeWithAllDeepest(TreeNode root) {
-        if(root == null){
+        if (root == null) {
             return null;
         }
         Map<TreeNode, TreeNode> parentMap = new HashMap<>();
-        Map<Integer, List<TreeNode>> depthMap = new HashMap<>();
         Map<TreeNode, Integer> nodeDepthMap = new HashMap<>();
-        buildMap(root,null,0,parentMap,depthMap,nodeDepthMap);
-        int max = Integer.MIN_VALUE;
-        for(int i: depthMap.keySet()){
-            if(i > max){
-                max = i;
-            }
-        }
-        List<TreeNode> list = depthMap.get(max);
-        if(list.size() == 1){
+        max = -1;
+        list = new ArrayList<>();
+        buildMap(root, null, 0, parentMap, nodeDepthMap);
+        if (list.size() == 1) {
             return list.get(0);
         }
-        TreeNode parent = parentMap.get(list.get(0));
-        for(TreeNode node: list){
-            TreeNode parent2 = parentMap.get(node);
-            while(parent != parent2 && parent != null && parent2 != null){
-                int parentDepth = nodeDepthMap.get(parent);
-                int parentDepth2 = nodeDepthMap.get(parent2);
-                if(parentDepth == parentDepth2){
-                    parent = parentMap.get(parent);
-                    parent2 = parentMap.get(parent2);
-                } else if(parentDepth > parentDepth2){
-                    parent = parentMap.get(parent);
+        TreeNode p1 = parentMap.get(list.get(0));
+        for (TreeNode t : list) {
+            TreeNode p2 = parentMap.get(t);
+            while (p1 != p2 && p1 != null && p2 != null) {
+                int p1Depth = nodeDepthMap.get(p1);
+                int p2Depth = nodeDepthMap.get(p2);
+                if (p1Depth == p2Depth) {
+                    p1 = parentMap.get(p1);
+                    p2 = parentMap.get(p2);
+                } else if (p1Depth > p2Depth) {
+                    p1 = parentMap.get(p1);
                 } else {
-                    parent2 = parentMap.get(parent2);
+                    p2 = parentMap.get(p2);
                 }
             }
         }
-        if(parent == null){
+        if (p1 == null) {
             return root;
         } else {
-            return parent;
+            return p1;
         }
     }
 
-    private void buildMap(TreeNode node, TreeNode parentNode,int depth,Map<TreeNode, TreeNode> parentMap, Map<Integer, List<TreeNode>> depthMap, Map<TreeNode, Integer> nodeDepthMap){
-        if(node == null){
+    private void buildMap(TreeNode node, TreeNode parentNode, int depth, Map<TreeNode, TreeNode> parentMap, Map<TreeNode, Integer> nodeDepthMap) {
+        if (node == null) {
             return;
         }
-        List<TreeNode> list;
-        if(depthMap.containsKey(depth)){
-            list = depthMap.get(depth);
-        } else {
-            list = new ArrayList<>();
+        parentMap.put(node, parentNode);
+        nodeDepthMap.put(node, depth);
+        if (depth >= max) {
+            max = depth;
+            if (list.size() != 0 && nodeDepthMap.get(list.get(0)) != max) {
+                list.clear();
+            }
+            list.add(node);
         }
-        list.add(node);
-        depthMap.put(depth,list);
-        nodeDepthMap.put(node,depth);
-        parentMap.put(node,parentNode);
-        buildMap(node.left,node,depth+1,parentMap,depthMap,nodeDepthMap);
-        buildMap(node.right,node,depth+1,parentMap,depthMap,nodeDepthMap);
+        buildMap(node.left, node, depth + 1, parentMap, nodeDepthMap);
+        buildMap(node.right, node, depth + 1, parentMap, nodeDepthMap);
     }
 }
