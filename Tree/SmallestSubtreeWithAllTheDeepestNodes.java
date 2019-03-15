@@ -71,44 +71,42 @@ public class SmallestSubtreeWithAllTheDeepestNodes {
         buildMap(node.right, node, depth + 1, parentMap, nodeDepthMap);
     }
 
+    Map<TreeNode, Integer> map;
     public TreeNode subtreeWithAllDeepestMethod2(TreeNode root) {
-        if (root == null) {
+        if(root == null){
             return null;
         }
-        Map<TreeNode, Integer> map = new HashMap<>();
-        buildMap(root, map);
-        return findSubtree(root, map);
+        map = new HashMap<>();
+        return help(root);
     }
-
-    private int buildMap(TreeNode node, Map<TreeNode, Integer> map) {
-        if (node == null) {
-            return -1;
+    private TreeNode help(TreeNode node){
+        if(node.left == null && node.right == null){
+            map.put(node,0);
+            return node;
         }
-        int left = buildMap(node.left, map);
-        int right = buildMap(node.right, map);
-        int distance = Math.max(left, right) + 1;
-        map.put(node, distance);
-        return distance;
-    }
-
-    private TreeNode findSubtree(TreeNode root, Map<TreeNode, Integer> map) {
-        if (root.left == null && root.right == null) {
-            return root;
+        if(node.left == null){
+            TreeNode rNode = help(node.right);
+            map.put(node,map.get(node.right)+1);
+            return rNode;
         }
-        if (root.left == null) {
-            return findSubtree(root.right, map);
+        if(node.right == null){
+            TreeNode lNode = help(node.left);
+            map.put(node,map.get(node.left)+1);
+            return lNode;
         }
-        if (root.right == null) {
-            return findSubtree(root.left, map);
-        }
-        int left = map.get(root.left);
-        int right = map.get(root.right);
-        if (left == right) {
-            return root;
-        } else if (left > right) {
-            return findSubtree(root.left, map);
+        TreeNode rNode = help(node.right);
+        TreeNode lNode = help(node.left);
+        int left = map.get(node.left);
+        int right = map.get(node.right);
+        TreeNode cNode;
+        if(left == right){
+            cNode = node;
+        } else if(left > right){
+            cNode = lNode;
         } else {
-            return findSubtree(root.right, map);
+            cNode = rNode;
         }
+        map.put(node,Math.max(left,right)+1);
+        return cNode;
     }
 }
