@@ -40,4 +40,28 @@ public class MaximumBinaryTree {
         return root;
 
     }
+    public TreeNode constructMaximumBinaryTreeMethod2(int[] nums) {
+        return help(nums,0,nums.length-1);
+    }
+
+    private TreeNode help(int[] nums, int start, int end){
+        if(nums == null || nums.length == 0 || end < start){
+            return null;
+        }
+        if(start == end){
+            return new TreeNode(nums[start]);
+        }
+        int max = nums[start];
+        int maxIndex = start;
+        for(int i = start + 1; i <= end; i++){
+            if(nums[i] > max){
+                maxIndex = i;
+                max = nums[i];
+            }
+        }
+        TreeNode root = new TreeNode(max);
+        root.left = help(nums,start,maxIndex-1);
+        root.right = help(nums,maxIndex+1,end);
+        return root;
+    }
 }
