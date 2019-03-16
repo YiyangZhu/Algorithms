@@ -1,9 +1,6 @@
 package Tree;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.List;
+import java.util.*;
 
 public class FindDuplicateSubtree {
     public class TreeNode {
@@ -64,5 +61,38 @@ public class FindDuplicateSubtree {
             return false;
         }
         return isDuplicate(t1.left, t2.left) && isDuplicate(t1.right, t2.right);
+    }
+
+    Map<String, List<TreeNode>> map;
+    public List<TreeNode> findDuplicateSubtreesMethod2(TreeNode root) {
+        List<TreeNode> result = new ArrayList<>();
+        if(root == null){
+            return result;
+        }
+        map = new HashMap<>();
+        postorder(root);
+        for(String s: map.keySet()){
+            if(map.get(s).size() > 1){
+                result.add(map.get(s).get(0));
+            }
+        }
+        return result;
+    }
+    private String postorder(TreeNode t){
+        if(t == null){
+            return " ";
+        }
+        String left = postorder(t.left);
+        String right = postorder(t.right);
+        String s = left + right + t.val;
+        if(map.containsKey(s)){
+            List<TreeNode> l = map.get(s);
+            l.add(t);
+        } else {
+            List<TreeNode> l = new ArrayList<>();
+            l.add(t);
+            map.put(s,l);
+        }
+        return s;
     }
 }
