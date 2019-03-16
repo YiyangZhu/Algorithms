@@ -18,36 +18,21 @@ public class FindBottomLeftTreeValue {
         q.add(root);
         while (!q.isEmpty()) {
             LinkedList<TreeNode> nextLevel = new LinkedList<>();
-            LinkedList<TreeNode> next2 = new LinkedList<>();
-            TreeNode n = root;
+            TreeNode firstNode = q.peek();
             while (!q.isEmpty()) {
-                n = q.remove();
+                TreeNode n = q.remove();
                 if (n.left != null) {
                     nextLevel.add(n.left);
-                    if (n.left.left != null) {
-                        next2.add(n.left.left);
-                    }
-                    if (n.left.right != null) {
-                        next2.add(n.left.right);
-                    }
                 }
                 if (n.right != null) {
                     nextLevel.add(n.right);
-                    if (n.right.left != null) {
-                        next2.add(n.right.left);
-                    }
-                    if (n.right.right != null) {
-                        next2.add(n.right.left);
-                    }
                 }
             }
             if (nextLevel.size() == 0) {
-                return n.val;
+                return firstNode.val;
+            } else {
+                q = nextLevel;
             }
-            if (next2.size() == 0) {
-                return nextLevel.peekFirst().val;
-            }
-            q = nextLevel;
         }
         return root.val;
     }
