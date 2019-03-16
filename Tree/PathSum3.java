@@ -70,4 +70,32 @@ public class PathSum3 {
         sum -= t.val;
         return isValid(map.get(t), current, sum);
     }
+
+    List<List<Integer>> result1;
+    public List<List<Integer>> pathSumMethod2(TreeNode root, int sum) {
+        result1 = new ArrayList<>();
+        if(root == null){
+            return result1;
+        }
+        List<Integer> current = new ArrayList<>();
+        preorder(root,current,sum);
+        return result1;
+    }
+
+    private void preorder(TreeNode t, List<Integer> current, int sum){
+        current.add(t.val);
+        sum -= t.val;
+        if(t.left == null && t.right == null){
+            if(sum == 0){
+                result1.add(current);
+            }
+        }
+        if(t.left != null){
+            List<Integer> copy = new ArrayList<>(current);
+            preorder(t.left,copy,sum);
+        }
+        if(t.right != null){
+            preorder(t.right,current,sum);
+        }
+    }
 }
