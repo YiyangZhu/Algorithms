@@ -17,59 +17,36 @@ public class DeleteNodeInABST {
         if (root == null) {
             return null;
         }
-        if (root.val == key) {
-            if (root.left == null && root.right == null) {
-                root = null;
-            } else if (root.right == null) {
-                root = root.left;
-            } else if (root.left == null) {
-                root = root.right;
-            } else {
-                TreeNode s = findS(root);
-                s.left = root.left;
-                deleteS(root, s);
-                s.right = root.right;
-                root = s;
-            }
-            return root;
-        }
-        find(root, key);
+        TreeNode sentinel = new TreeNode(0);
+        sentinel.left = root;
+        find(sentinel, key);
         if (p == null) {
             return root;
         }
-
         if (p.left != null && p.left.val == key) {
             TreeNode d = p.left;
-            if (d.left == null && d.right == null) {
-                p.left = null;
-            } else if (d.left == null) {
-                p.left = d.right;
-            } else if (d.right == null) {
-                p.left = d.left;
-            } else {
-                TreeNode s = findS(d);
-                s.left = d.left;
-                deleteS(d, s);
-                s.right = d.right;
-                p.left = s;
-            }
+            p.left = setD(d);
         } else {
             TreeNode d = p.right;
-            if (d.left == null && d.right == null) {
-                p.right = null;
-            } else if (d.left == null) {
-                p.right = d.right;
-            } else if (d.right == null) {
-                p.right = d.left;
-            } else {
-                TreeNode s = findS(d);
-                s.left = d.left;
-                deleteS(d, s);
-                s.right = d.right;
-                p.right = s;
-            }
+            p.right = setD(d);
         }
-        return root;
+        return sentinel.left;
+    }
+
+    private TreeNode setD(TreeNode d) {
+        if (d.left == null && d.right == null) {
+            return null;
+        } else if (d.left == null) {
+            return d.right;
+        } else if (d.right == null) {
+            return d.left;
+        } else {
+            TreeNode s = findS(d);
+            s.left = d.left;
+            deleteS(d, s);
+            s.right = d.right;
+            return s;
+        }
     }
 
     private void find(TreeNode t, int k) {
@@ -91,7 +68,7 @@ public class DeleteNodeInABST {
             find(t.right, k);
         }
     }
-    
+
     private TreeNode findS(TreeNode d) {
         d = d.right;
         while (d.left != null) {
