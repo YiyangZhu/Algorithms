@@ -14,9 +14,6 @@ public class DeleteNodeInABST {
     TreeNode p;
 
     public TreeNode deleteNode(TreeNode root, int key) {
-        if (root == null) {
-            return null;
-        }
         TreeNode sentinel = new TreeNode(0);
         sentinel.left = root;
         find(sentinel, key);
