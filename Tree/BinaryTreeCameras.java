@@ -11,30 +11,31 @@ public class BinaryTreeCameras {
         }
     }
 
-    //-1: null;
-    // 0: no camera, no cover;
-    // 1: no camera, covered;
-    // 2: has camera, covered;
+    //0: no camera, no cover
+    //1: no camera, has cover
+    //2: null
+    //3: has camera, has cover
+
     int result;
 
     public int minCameraCover(TreeNode root) {
         result = 0;
         int rootState = helper(root);
-        return rootState <= 0 ? result + 1 : result;
+        return rootState == 0 ? result + 1 : result;
     }
 
     private int helper(TreeNode t) {
         if (t == null) {
-            return -1;
+            return 2;
         }
         int l = helper(t.left);
         int r = helper(t.right);
-        if (l == -1 && r == -1 || l == -1 && r == 1 || l == 1 && r == -1 || l == 1 && r == 1) {
-            return 0;
-        }
         if (l == 0 || r == 0) {
             result++;
-            return 2;
+            return 3;
+        }
+        if (l <= 2 && r <= 2) {
+            return 0;
         }
         return 1;
     }
