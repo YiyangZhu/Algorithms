@@ -1,7 +1,9 @@
 package Tree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class BinaryTreePostorderTraversal {
     public class TreeNode {
@@ -29,5 +31,22 @@ public class BinaryTreePostorderTraversal {
         helper(t.left);
         helper(t.right);
         result.add(t.val);
+    }
+
+    public List<Integer> postorderTraversalIterative(TreeNode root) {
+        LinkedList<Integer> result = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode p = root;
+        while (p != null || stack.isEmpty()) {
+            if (p != null) {
+                result.addFirst(p.val);
+                stack.add(p);
+                p = p.right;
+            } else {
+                TreeNode n = stack.pop();
+                p = n.left;
+            }
+        }
+        return result;
     }
 }
