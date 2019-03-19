@@ -29,6 +29,11 @@ public class LinkedListRep {
     public class LinkedList {
         Node head;
         Node tail;
+        int size;
+
+        public LinkedList() {
+            size = 0;
+        }
 
         public void insert(Node n) {
             if (head == null) {
@@ -39,6 +44,7 @@ public class LinkedListRep {
             }
             n.head = this.head;
             this.tail = n;
+            size++;
         }
 
         public Node search(int key) {
@@ -75,14 +81,13 @@ public class LinkedListRep {
         for (char v : g.vertices) {
             MAKE_SET(v);
         }
-
         for (char[] edge : g.edges) {
             System.out.println("Before iteration on edge (" + edge[0] + "," + edge[1] + ")");
             printComponent();
             LinkedList l1 = FIND_SET(edge[0]);
             LinkedList l2 = FIND_SET(edge[1]);
             if (l1 != l2) {
-                UNION(l1, l2);
+                WEIGHTED_UNION(l1, l2);
             }
             System.out.println();
             System.out.println("After iteration on edge (" + edge[0] + "," + edge[1] + ")");
@@ -118,7 +123,7 @@ public class LinkedListRep {
         return null;
     }
 
-    public void UNION(LinkedList l1, LinkedList l2) {
+    public void WEIGHTED_UNION(LinkedList l1, LinkedList l2) {
         Node n = l2.head;
         while (n != null) {
             l1.insert(n);
