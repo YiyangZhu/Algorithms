@@ -107,9 +107,7 @@ public class LinkedListRep {
 
     public LinkedList FIND_SET(Object o) {
         for (LinkedList l : this.set) {
-
             Node n = l.head;
-
             while (n != null) {
                 if (n.val == (char) o) {
                     return l;
@@ -122,11 +120,9 @@ public class LinkedListRep {
 
     public void UNION(LinkedList l1, LinkedList l2) {
         Node n = l2.head;
-        Node n2 = l2.head;
-        while (n2 != null) {
-            n = n2;
+        while (n != null) {
             l1.insert(n);
-            n2 = n2.next;
+            n = n.next;
         }
         HashSet<LinkedList> newSet = new HashSet<>();
         for (LinkedList l : this.set) {
