@@ -1,29 +1,16 @@
 package DisjointSet;
 
-
 import java.util.HashSet;
 
-public class DisjointSet_21_2_1 {
-    public class Graph {
-        char[] vertices;
-        char[][] edges;
-
-        Graph() {
-        }
-
-        Graph(char[] vertices, char[][] edges) {
-            this.vertices = vertices;
-            this.edges = edges;
-        }
-    }
+public class DisjointSet_21_2_2 {
 
     public class Node {
-        char val;
+        int val;
         Node next;
         Node head;
 
-        Node(char c) {
-            this.val = c;
+        Node(int i) {
+            this.val = i;
         }
     }
 
@@ -64,49 +51,78 @@ public class DisjointSet_21_2_1 {
     }
 
     public static void main(String[] args) {
-        DisjointSet_21_2_1 d = new DisjointSet_21_2_1();
+        DisjointSet_21_2_2 d = new DisjointSet_21_2_2();
         d.demo();
-    }
-
-    public void demo() {
-        char[] vertices = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'};
-        char[][] edges = {{'d', 'i'}, {'f', 'k'}, {'g', 'i'}, {'b', 'g'}, {'a', 'h'}, {'i', 'j'}, {'d', 'k'}, {'b', 'j'}, {'d', 'f'}, {'g', 'j'}, {'a', 'e'}};
-        Graph g = new Graph(vertices, edges);
-        CONNECTED_COMPONENTS(g);
     }
 
     HashSet<LinkedList> set;
 
-    public void CONNECTED_COMPONENTS(Graph g) {
-        this.set = new HashSet<>();
-        for (char v : g.vertices) {
-            MAKE_SET(v);
+    public void demo() {
+        set = new HashSet<>();
+        for (int i = 1; i <= 16; i++) {
+            MAKE_SET(i);
         }
-        for (char[] edge : g.edges) {
-            System.out.println("\nBefore iteration on edge (" + edge[0] + "," + edge[1] + ")");
+        System.out.println("After MAKE-SET operations:");
+        printComponent();
+
+        for (int i = 1; i <= 15; i += 2) {
+            LinkedList l1 = FIND_SET(i);
+            LinkedList l2 = FIND_SET(i + 1);
+            System.out.println("\nBefore iteration on (" + i + ", " + (i + 1) + ")");
             printComponent();
-            LinkedList l1 = FIND_SET(edge[0]);
-            LinkedList l2 = FIND_SET(edge[1]);
             if (l1 != l2) {
                 WEIGHTED_UNION(l1, l2);
             }
-            System.out.println();
-            System.out.println("After iteration on edge (" + edge[0] + "," + edge[1] + ")");
+            System.out.println("After iteration on (" + i + ", " + (i + 1) + ")");
             printComponent();
         }
+
+        for (int i = 1; i <= 13; i += 4) {
+            LinkedList l1 = FIND_SET(i);
+            LinkedList l2 = FIND_SET(i + 2);
+            System.out.println("\nBefore iteration on (" + i + ", " + (i + 2) + ")");
+            printComponent();
+            if (l1 != l2) {
+                WEIGHTED_UNION(l1, l2);
+            }
+            System.out.println("After iteration on (" + i + ", " + (i + 2) + ")");
+            printComponent();
+        }
+
+        System.out.println("\nBefore union (" + 1 + ", " + 5 + ")");
+        printComponent();
+        LinkedList l1 = FIND_SET(1);
+        LinkedList l2 = FIND_SET(5);
+        WEIGHTED_UNION(l1, l2);
+        System.out.println("After union (" + 1 + ", " + 5 + ")");
+        printComponent();
+
+        System.out.println("\nBefore union (" + 11 + ", " + 13 + ")");
+        printComponent();
+        LinkedList l3 = FIND_SET(11);
+        LinkedList l4 = FIND_SET(13);
+        WEIGHTED_UNION(l3, l4);
+        System.out.println("After union (" + 11 + ", " + 13 + ")");
+        printComponent();
+
+        System.out.println("\nBefore union (" + 1 + ", " + 10 + ")");
+        printComponent();
+        LinkedList l5 = FIND_SET(1);
+        LinkedList l6 = FIND_SET(10);
+        WEIGHTED_UNION(l5, l6);
+        System.out.println("After union (" + 1 + ", " + 10 + ")");
+        printComponent();
+
+        LinkedList l7 = FIND_SET(2);
+        LinkedList l8 = FIND_SET(9);
+        printLinkedList(l7);
+        printLinkedList(l8);
     }
 
-    public boolean SAME_COMPONENT(Object o1, Object o2) {
-        if (FIND_SET(o1) == FIND_SET(o2)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public void MAKE_SET(Object o) {
         LinkedList l = new LinkedList();
-        Node n = new Node((char) o);
+        Node n = new Node((int) o);
         l.insert(n);
         this.set.add(l);
     }
@@ -115,7 +131,7 @@ public class DisjointSet_21_2_1 {
         for (LinkedList l : this.set) {
             Node n = l.head;
             while (n != null) {
-                if (n.val == (char) o) {
+                if (n.val == (int) o) {
                     return l;
                 }
                 n = n.next;
@@ -178,4 +194,3 @@ public class DisjointSet_21_2_1 {
         System.out.println();
     }
 }
-
