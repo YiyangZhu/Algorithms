@@ -1,9 +1,8 @@
 package DisjointSet;
 
 import java.util.HashSet;
-import java.util.Set;
 
-public class Demo {
+public class DisjointSet_21_1_1 {
     public class Graph {
         char[] vertices;
         char[][] edges;
@@ -18,56 +17,54 @@ public class Demo {
     }
 
     public static void main(String[] args) {
-        Demo m = new Demo();
-        m.demo();
+        DisjointSet_21_1_1 d = new DisjointSet_21_1_1();
+        d.demo();
     }
 
     public void demo() {
-        char[] vertices = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
-        char[][] edges = {{'b', 'd'}, {'e', 'g'}, {'a', 'c'}, {'h', 'i'}, {'a', 'b'}, {'e', 'f'}, {'b', 'c'}};
+        char[] vertices = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'};
+        char[][] edges = {{'d', 'i'}, {'f', 'k'}, {'g', 'i'}, {'b', 'g'}, {'a', 'h'}, {'i', 'j'}, {'d', 'k'}, {'b', 'j'}, {'d', 'f'}, {'g', 'j'}, {'a', 'e'}};
         Graph g = new Graph(vertices, edges);
         CONNECTED_COMPONENTS(g);
-        System.out.println(SAME_COMPONENT('a', 'b'));
-        System.out.println(SAME_COMPONENT('a', 'e'));
-        printComponent();
     }
 
+    HashSet<HashSet<Object>> set;
+
     public void CONNECTED_COMPONENTS(Graph g) {
-        set = new HashSet<>();
+        this.set = new HashSet<>();
         for (char v : g.vertices) {
             MAKE_SET(v);
         }
-        //above statement time complexity: O(|V|)
+        System.out.println("Before Iteration on edges:");
+        printComponent();
         for (char[] edge : g.edges) {
-            HashSet<Object> set1 = FIND_SET(edge[0]);
-            HashSet<Object> set2 = FIND_SET(edge[1]);
-            if (set1 != set2) {
+            HashSet<Object> s1 = FIND_SET(edge[0]);
+            HashSet<Object> s2 = FIND_SET(edge[1]);
+            if (s1 != s2) {
                 UNION(edge[0], edge[1]);
             }
+            System.out.println();
+            System.out.println("After iteration on edge (" + edge[0] + "," + edge[1] + ")");
+            printComponent();
         }
-        //above statements time complexity (worst case): O(|E| * set.size() * O(set2.size()?))
     }
 
-    public boolean SAME_COMPONENT(char u, char v) {
-        if (FIND_SET(u) == FIND_SET(v)) {
+    public boolean SAME_COMPONENT(Object o1, Object o2) {
+        if (FIND_SET(o1) == FIND_SET(o2)) {
             return true;
         } else {
             return false;
         }
     }
 
-    Set<HashSet<Object>> set;
-
-    //MAKE-SET
     public void MAKE_SET(Object o) {
         HashSet<Object> set1 = new HashSet<>();
         set1.add(o);
-        set.add(set1);
+        this.set.add(set1);
     }
 
-    //FIND-SET
     public HashSet<Object> FIND_SET(Object o) {
-        for (HashSet<Object> s : set) {
+        for (HashSet<Object> s : this.set) {
             if (s.contains(o)) {
                 return s;
             }
@@ -75,25 +72,18 @@ public class Demo {
         return null;
     }
 
-    //UNION
     public void UNION(Object o1, Object o2) {
-        HashSet<Object> set1 = FIND_SET(o1);
-        HashSet<Object> set2 = FIND_SET(o2);
-        set1.addAll(set2);
-        /*
-        The above statement can also be written as:
-        for (Object o : set2) {
-            set1.add(set2);
-        }
-        */
+        HashSet<Object> s1 = FIND_SET(o1);
+        HashSet<Object> s2 = FIND_SET(o2);
+        s1.addAll(s2);
+
         HashSet<HashSet<Object>> newSet = new HashSet<>();
         for (HashSet<Object> s : set) {
-            if (s != set2) {
+            if (s != s2) {
                 newSet.add(s);
             }
         }
         set = newSet;
-        //set.remove(s2) does not work, hashcode of s2 does not change, need to explore later
     }
 
     public void printComponent() {
