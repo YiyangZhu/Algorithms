@@ -71,20 +71,34 @@ public class LinkedListRep {
         CONNECTED_COMPONENTS(g);
     }
 
-    HashSet<LinkedList> set;
+    HashSet<Node> set;
 
     public void CONNECTED_COMPONENTS(Graph g) {
         this.set = new HashSet<>();
+        HashSet<Node> nodeSet = new HashSet<>();
         for (char v : g.vertices) {
-            MAKE_SET(v);
+            Node n = new Node(v);
+            MAKE_SET(n);
+            nodeSet.add(n);
         }
         for (char[] edge : g.edges) {
-            System.out.println("Before iteration on edge (" + edge[0] + "," + edge[1] + ")");
+            System.out.println("\nBefore iteration on edge (" + edge[0] + "," + edge[1] + ")");
             printComponent();
-            LinkedList l1 = FIND_SET(edge[0]);
-            LinkedList l2 = FIND_SET(edge[1]);
-            if (l1 != l2) {
-                UNION(l1, l2);
+            Node n1 = null, n2 = null;
+            for (Node n : nodeSet) {
+                if (n.val == edge[0]) {
+                    n1 = FIND_SET(n);
+                    break;
+                }
+            }
+            for (Node n : nodeSet) {
+                if (n.val == edge[1]) {
+                    n2 = FIND_SET(n);
+                    break;
+                }
+            }
+            if (n1 != n2) {
+                UNION(n1, n2);
             }
             System.out.println();
             System.out.println("After iteration on edge (" + edge[0] + "," + edge[1] + ")");
@@ -92,57 +106,43 @@ public class LinkedListRep {
         }
     }
 
-    public boolean SAME_COMPONENT(Object o1, Object o2) {
-        if (FIND_SET(o1) == FIND_SET(o2)) {
+    public boolean SAME_COMPONENT(Node n1, Node n2) {
+        if (FIND_SET(n1) == FIND_SET(n2)) {
             return true;
         } else {
             return false;
         }
     }
 
-    public void MAKE_SET(Object o) {
+    public void MAKE_SET(Node n) {
         LinkedList l = new LinkedList();
-        Node n = new Node((char) o);
         l.insert(n);
-        this.set.add(l);
+        this.set.add(n);
     }
 
-    public LinkedList FIND_SET(Object o) {
-        for (LinkedList l : this.set) {
-            Node n = l.head;
-            while (n != null) {
-                if (n.val == (char) o) {
-                    return l;
-                }
-                n = n.next;
-            }
-        }
-        return null;
+    public Node FIND_SET(Node n1) {
+        return n1.head;
     }
 
-    public void UNION(LinkedList l1, LinkedList l2) {
-        Node n = l2.head;
-        while (n != null) {
-            l1.insert(n);
-            n = n.next;
+    public void UNION(Node n1, Node n2) {
+        set.remove(n2);
+        Node tail = n1;
+        while (tail.next != null) {
+            tail = tail.next;
         }
-        HashSet<LinkedList> newSet = new HashSet<>();
-        for (LinkedList l : this.set) {
-            if (l != l2) {
-
-                newSet.add(l);
-            }
+        tail.next = n2;
+        while (n2 != null) {
+            n2.head = n1;
+            n2 = n2.next;
         }
-        this.set = newSet;
     }
 
     public void printComponent() {
         int i = 0;
-        for (LinkedList l : this.set) {
+        for (Node n : this.set) {
             System.out.print("Component " + i + " : (");
             int j = 0;
-            Node n = l.head;
-            while (n != l.tail) {
+            while (n.next != null) {
                 System.out.print(n.val + ", ");
                 n = n.next;
             }
