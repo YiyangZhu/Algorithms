@@ -1,7 +1,6 @@
 package UnionFind;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class RegionCutBySlashesThree {
 
@@ -23,11 +22,8 @@ public class RegionCutBySlashesThree {
         System.out.println(regionsBySlashes(grid5));
     }
 
-    HashSet<TreeNode> set;
-
     public int regionsBySlashes(String[] grid) {
         int result = 1;
-        this.set = new HashSet<>();
         HashMap<Integer, TreeNode> map = new HashMap<>();
         int n = grid.length;
         int index = (n + 1) * (n + 1);
@@ -42,32 +38,32 @@ public class RegionCutBySlashesThree {
         //merge outer nodes
         //top
         for (int i = 0; i < n; i++) {
-            TreeNode t1 = map.get(i);
-            TreeNode t2 = map.get(i + 1);
+            TreeNode t1 = map.get(i).p;
+            TreeNode t2 = map.get(i + 1).p;
             if (t1 != t2) {
                 UNION(t1, t2);
             }
         }
         //bottom
-        for (int i = n * n; i < n * n + n; i++) {
-            TreeNode t1 = map.get(i);
-            TreeNode t2 = map.get(i + 1);
+        for (int i = n * (n + 1); i < index - 1; i++) {
+            TreeNode t1 = map.get(i).p;
+            TreeNode t2 = map.get(i + 1).p;
             if (t1 != t2) {
                 UNION(t1, t2);
             }
         }
         //left
         for (int j = 0; j < n; j++) {
-            TreeNode t1 = map.get(j * n);
-            TreeNode t2 = map.get((j + 1) * n);
+            TreeNode t1 = map.get(j * (n + 1)).p;
+            TreeNode t2 = map.get((j + 1) * (n + 1)).p;
             if (t1 != t2) {
                 UNION(t1, t2);
             }
         }
         //right
         for (int j = 0; j < n; j++) {
-            TreeNode t1 = map.get(j * n + n);
-            TreeNode t2 = map.get((j + 1) * n + n);
+            TreeNode t1 = map.get(j * (n + 1) + n).p;
+            TreeNode t2 = map.get((j + 1) * (n + 1) + n).p;
             if (t1 != t2) {
                 UNION(t1, t2);
             }
@@ -78,8 +74,8 @@ public class RegionCutBySlashesThree {
             for (int j = 0; j < n; j++) {
                 char c = s.charAt(j);
                 if (c == '/') {
-                    int index1 = (i + 1) * n + j;
-                    int index2 = i * n + j + 1;
+                    int index1 = (i + 1) * (n + 1) + j;
+                    int index2 = i * (n + 1) + j + 1;
                     TreeNode t1 = map.get(index1);
                     TreeNode t2 = map.get(index2);
                     TreeNode p1 = FIND_SET(t1);
@@ -90,8 +86,8 @@ public class RegionCutBySlashesThree {
                         UNION(p1, p2);
                     }
                 } else if (c == '\\') {
-                    int index1 = i * n + j;
-                    int index2 = (i + 1) * n + j + 1;
+                    int index1 = i * (n + 1) + j;
+                    int index2 = (i + 1) * (n + 1) + j + 1;
                     TreeNode t1 = map.get(index1);
                     TreeNode t2 = map.get(index2);
                     TreeNode p1 = FIND_SET(t1);
@@ -120,7 +116,6 @@ public class RegionCutBySlashesThree {
     }
 
     private void UNION(TreeNode t1, TreeNode t2) {
-        set.remove(t2);
         if (t1.rank > t2.rank) {
             t2.p = t1;
         } else {
