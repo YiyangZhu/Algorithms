@@ -31,37 +31,29 @@ public class RegionCutBySlashesTwo {
         int n = grid.length;
         this.len = n + 1;
         int[][] matrix = new int[len][len];
+
+        HashSet<Integer> set0 = new HashSet<>();
         for (int i = 0; i <= n; i++) {
-            for (int j = 0; j <= n; j++) {
-                MAKE_SET(i, j);
-            }
-        }
-        //merge outer sets
-        //left and right
-        for (int i = 0; i < n; i++) {
-            HashSet<Integer> s1 = FIND_SET(i, 0);
-            HashSet<Integer> s2 = FIND_SET(i + 1, 0);
-            if (s1 != s2) {
-                UNION(s1, s2);
-            }
-            HashSet<Integer> s3 = FIND_SET(i, n);
-            HashSet<Integer> s4 = FIND_SET(i + 1, n);
-            if (s3 != s4) {
-                UNION(s3, s4);
-            }
+            int j = 0;
+            int index = len * i + j;
+            set0.add(index);
+            j = n;
+            index = len * i + j;
+            set0.add(index);
         }
 
-        //top and bottom
-        for (int j = 0; j < n; j++) {
-            HashSet<Integer> s1 = FIND_SET(0, j);
-            HashSet<Integer> s2 = FIND_SET(0, j + 1);
-            if (s1 != s2) {
-                UNION(s1, s2);
-            }
-            HashSet<Integer> s3 = FIND_SET(n, j);
-            HashSet<Integer> s4 = FIND_SET(n, j + 1);
-            if (s3 != s4) {
-                UNION(s3, s4);
+        for (int j = 0; j <= n; j++) {
+            int i = 0;
+            int index = len * i + j;
+            set0.add(index);
+            i = n;
+            index = len * i + j;
+            set0.add(index);
+        }
+        set.add(set0);
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < n; j++) {
+                MAKE_SET(i, j);
             }
         }
 
@@ -70,31 +62,22 @@ public class RegionCutBySlashesTwo {
             for (int j = 0; j < n; j++) {
                 char c = s.charAt(j);
                 if (c == '/') {
-                    int row = i + 1;
-                    int col = j;
-                    int row2 = i;
-                    int col2 = j + 1;
-                    HashSet<Integer> s1 = FIND_SET(row, col);
-                    HashSet<Integer> s2 = FIND_SET(row2, col2);
+                    HashSet<Integer> s1 = FIND_SET(i + 1, j);
+                    HashSet<Integer> s2 = FIND_SET(i, j + 1);
                     if (s1 == s2) {
                         result++;
                     } else {
                         UNION(s1, s2);
                     }
                 } else if (c == '\\') {
-                    int row = i;
-                    int col = j;
-                    int row2 = i + 1;
-                    int col2 = j + 1;
-                    HashSet<Integer> s1 = FIND_SET(row, col);
-                    HashSet<Integer> s2 = FIND_SET(row2, col2);
+                    HashSet<Integer> s1 = FIND_SET(i, j);
+                    HashSet<Integer> s2 = FIND_SET(i + 1, j + 1);
                     if (s1 == s2) {
                         result++;
                     } else {
                         UNION(s1, s2);
                     }
                 }
-
             }
         }
         return result;
