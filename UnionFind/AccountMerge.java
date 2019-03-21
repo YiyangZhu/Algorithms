@@ -49,13 +49,15 @@ public class AccountMerge {
 
         List<List<String>> result = new ArrayList<>();
         for (Node n : names) {
-            LinkedList<String> list1 = new LinkedList<>();
+
             Node head = n;
             n = n.next;
+            Set<String> set1 = new HashSet<>();
             while (n != null) {
-                list1.add(n.s);
+                set1.add(n.s);
                 n = n.next;
             }
+            LinkedList<String> list1 = new LinkedList<>(set1);
             Collections.sort(list1);
             list1.addFirst(head.s);
             result.add(list1);
