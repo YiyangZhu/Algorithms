@@ -1,9 +1,7 @@
 package Tree;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class RedundantConnectionII {
     public static void main(String[] args) {
@@ -20,54 +18,81 @@ public class RedundantConnectionII {
         Node p;
         int i;
 
-        public Node(int i) {
+        Node(int i) {
             this.i = i;
+            p = null;
         }
-    }
-
-    private void makeSet(Node n) {
-        n.p = n;
-    }
-
-    private Node findSet(Node n) {
-        if (n != n.p) {
-            n.p = findSet(n.p);
-        }
-        return n.p;
     }
 
     public int[] findRedundantDirectedConnection(int[][] edges) {
-        Set<Node> set = new HashSet<>();
+        int[] twoParent = null;
+        int[] cycle = null;
+        int[] last = null;
         Map<Integer, Node> map = new HashMap<>();
         for (int[] edge : edges) {
-            int i1 = edge[0];
-            int i2 = edge[1];
+            int e1 = edge[0];
+            int e2 = edge[1];
             Node n1 = null;
             Node n2 = null;
-            if (map.containsKey(i1)) {
-                n1 = map.get(i1);
+            if (map.containsKey(e1)) {
+                n1 = map.get(e1);
             } else {
-                n1 = new Node(i1);
-                map.put(i1, n1);
-                makeSet(n1);
+                n1 = new Node(e1);
+                map.put(e1, n1);
             }
-            if (map.containsKey(i2)) {
-                n2 = map.get(i2);
+            if (map.containsKey(e2)) {
+                n2 = map.get(e2);
             } else {
-                n2 = new Node(i2);
-                map.put(i2, n2);
-                makeSet(n2);
+                n2 = new Node(e2);
+                map.put(e2, n2);
             }
-            Node p1 = findSet(n1);
-            Node p2 = findSet(n2);
-            if (p1 == n1 && p2 == n2) {
-                n2.p = n1;
-            } else if (p2 == n2 && p1 != n2) {
+            Node p1 = n1.p;
+            Node p2 = n2.p;
+            if (p1 == null && p2 == null) {
                 n2.p = n1;
             } else {
-                return edge;
+                if (p2 != null) {
+                    twoParent = edge;
+                    continue;
+                }
+                Node p = n1;
+                boolean hasCycle = false;
+                while (p != null) {
+                    if (p == n2) {
+                        hasCycle = true;
+                        break;
+                    }
+                    p = p.p;
+                }
+                if (hasCycle) {
+                    last = edge;
+                    cycle = edge;
+
+                    continue;
+                } else {
+                    n2.p = n1;
+                }
             }
         }
-        return edges[0];
+        if (twoParent == null) {
+            return last;
+        }
+        if (cycle == null) {
+            return twoParent;
+        } else {
+            int[] result = findPreviousEdge(twoParent, cycle, map);
+            return result;
+        }
+    }
+
+    private int[] findPreviousEdge(int[] twoParent, int[] cycle, Map<Integer, Node> map) {
+        int e1 = twoParent[1];
+        Node n = map.get(e1);
+        Node p = n.p;
+        int e2 = p.i;
+        int[] pEdge = new int[2];
+        pEdge[0] = e2;
+        pEdge[1] = e1;
+        return pEdge;
     }
 }
