@@ -3,6 +3,27 @@ package UnionFind;
 import java.util.*;
 
 public class AccountMerge {
+    public static void main(String[] args) {
+        AccountMerge a = new AccountMerge();
+        a.demo();
+    }
+
+    private void demo() {
+
+        List<List<String>> accounts = new ArrayList<>();
+        List<String> account1 = new ArrayList<>(Arrays.asList("David", "David0@m.co", "David1@m.co"));
+        List<String> account2 = new ArrayList<>(Arrays.asList("David", "David3@m.co", "David4@m.co"));
+        List<String> account3 = new ArrayList<>(Arrays.asList("David", "David4@m.co", "David5@m.co"));
+        List<String> account4 = new ArrayList<>(Arrays.asList("David", "David2@m.co", "David3@m.co"));
+        List<String> account5 = new ArrayList<>(Arrays.asList("David", "David1@m.co", "David2@m.co"));
+        accounts.add(account1);
+        accounts.add(account2);
+        accounts.add(account3);
+        accounts.add(account4);
+        accounts.add(account5);
+        System.out.println(accountsMerge(accounts));
+    }
+
     public class Node {
         Node head;
         Node next;
