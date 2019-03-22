@@ -1,11 +1,9 @@
 package Tree;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class RedundantConnectionII {
     public static void main(String[] args) {
@@ -18,52 +16,58 @@ public class RedundantConnectionII {
         findRedundantDirectedConnection(a1);
     }
 
-    Map<Integer, Set<Integer>> map;
-    List<int[]> result;
-    Map<Integer, Integer> pMap;
+    public class Node {
+        Node p;
+        int i;
 
-    public int[] findRedundantDirectedConnection(int[][] edges) {
-        map = new HashMap<>();
-        result = new ArrayList<>();
-        pMap = new HashMap<>();
-        for (int[] edge : edges) {
-            buildMap(edge);
+        public Node(int i) {
+            this.i = i;
         }
-        return result.get(0);
     }
 
-    private void buildMap(int[] e) {
-        int e0 = e[0];
-        int e1 = e[1];
-        if (!map.containsKey(e0) && !map.containsKey(e1)) {
-            Set<Integer> set = new HashSet<>();
-            set.add(e0);
-            set.add(e1);
-            map.put(e0, set);
-            map.put(e1, set);
-        } else if (map.containsKey(e0) && !map.containsKey(e1)) {
-            Set<Integer> set = map.get(e0);
-            set.add(e1);
-            map.put(e1, set);
-        } else if (!map.containsKey(e0) && map.containsKey(e1)) {
-            Set<Integer> set = map.get(e1);
-            set.add(e0);
-            map.put(e0, set);
-        } else if (map.get(e0) != map.get(e1)) {
-            Set<Integer> set1 = map.get(e0);
-            Set<Integer> set2 = map.get(e1);
-            Set<Integer> merge = new HashSet<>();
-            for (int i : set1) {
-                merge.add(i);
-            }
-            for (int i : set2) {
-                merge.add(i);
-            }
-            for (int i : merge) {
-                map.put(i, merge);
-            }
-        } else {
-            result.add(e);
+    private void makeSet(Node n) {
+        n.p = n;
+    }
+
+    private Node findSet(Node n) {
+        if (n != n.p) {
+            n.p = findSet(n.p);
         }
+        return n.p;
+    }
+
+    public int[] findRedundantDirectedConnection(int[][] edges) {
+        Set<Node> set = new HashSet<>();
+        Map<Integer, Node> map = new HashMap<>();
+        for (int[] edge : edges) {
+            int i1 = edge[0];
+            int i2 = edge[1];
+            Node n1 = null;
+            Node n2 = null;
+            if (map.containsKey(i1)) {
+                n1 = map.get(i1);
+            } else {
+                n1 = new Node(i1);
+                map.put(i1, n1);
+                makeSet(n1);
+            }
+            if (map.containsKey(i2)) {
+                n2 = map.get(i2);
+            } else {
+                n2 = new Node(i2);
+                map.put(i2, n2);
+                makeSet(n2);
+            }
+            Node p1 = findSet(n1);
+            Node p2 = findSet(n2);
+            if (p1 == n1 && p2 == n2) {
+                n2.p = n1;
+            } else if (p2 == n2 && p1 != n2) {
+                n2.p = n1;
+            } else {
+                return edge;
+            }
+        }
+        return edges[0];
     }
 }
