@@ -15,25 +15,23 @@ public class RedundantConnectionII {
     }
 
     public class Node {
-        Node p;
         int i;
+        Node p;
 
-        Node(int i) {
+        public Node(int i) {
             this.i = i;
-            p = null;
         }
     }
 
     public int[] findRedundantDirectedConnection(int[][] edges) {
+        Map<Integer, Node> map = new HashMap<>();
+        int[] last = null;
         int[] twoParent = null;
         boolean hasCycle = false;
-        int[] last = null;
-        Map<Integer, Node> map = new HashMap<>();
         for (int[] edge : edges) {
             int e1 = edge[0];
             int e2 = edge[1];
-            Node n1 = null;
-            Node n2 = null;
+            Node n1, n2;
             if (map.containsKey(e1)) {
                 n1 = map.get(e1);
             } else {
@@ -53,20 +51,20 @@ public class RedundantConnectionII {
             } else {
                 if (p2 != null) {
                     twoParent = edge;
-                    continue;
-                }
-                Node p = n1;
-                while (p != null) {
-                    if (p == n2) {
-                        hasCycle = true;
-                        break;
-                    }
-                    p = p.p;
-                }
-                if (hasCycle) {
-                    last = edge;
                 } else {
-                    n2.p = n1;
+                    Node p = n1.p;
+                    while (p != null) {
+                        if (p == n2) {
+                            hasCycle = true;
+                            break;
+                        }
+                        p = p.p;
+                    }
+                    if (hasCycle) {
+                        last = edge;
+                    } else {
+                        n2.p = n1;
+                    }
                 }
             }
         }
