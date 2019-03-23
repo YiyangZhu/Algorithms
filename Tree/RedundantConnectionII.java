@@ -26,7 +26,7 @@ public class RedundantConnectionII {
 
     public int[] findRedundantDirectedConnection(int[][] edges) {
         int[] twoParent = null;
-        int[] cycle = null;
+        boolean hasCycle = false;
         int[] last = null;
         Map<Integer, Node> map = new HashMap<>();
         for (int[] edge : edges) {
@@ -56,7 +56,6 @@ public class RedundantConnectionII {
                     continue;
                 }
                 Node p = n1;
-                boolean hasCycle = false;
                 while (p != null) {
                     if (p == n2) {
                         hasCycle = true;
@@ -66,9 +65,6 @@ public class RedundantConnectionII {
                 }
                 if (hasCycle) {
                     last = edge;
-                    cycle = edge;
-
-                    continue;
                 } else {
                     n2.p = n1;
                 }
@@ -77,22 +73,13 @@ public class RedundantConnectionII {
         if (twoParent == null) {
             return last;
         }
-        if (cycle == null) {
+        if (!hasCycle) {
             return twoParent;
         } else {
-            int[] result = findPreviousEdge(twoParent, cycle, map);
+            int[] result = new int[2];
+            result[0] = map.get(twoParent[1]).p.i;
+            result[1] = twoParent[1];
             return result;
         }
-    }
-
-    private int[] findPreviousEdge(int[] twoParent, int[] cycle, Map<Integer, Node> map) {
-        int e1 = twoParent[1];
-        Node n = map.get(e1);
-        Node p = n.p;
-        int e2 = p.i;
-        int[] pEdge = new int[2];
-        pEdge[0] = e2;
-        pEdge[1] = e1;
-        return pEdge;
     }
 }
