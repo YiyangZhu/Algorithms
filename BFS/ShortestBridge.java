@@ -6,135 +6,55 @@ public class ShortestBridge {
     public int shortestBridge(int[][] A) {
         int n = A.length;
         Set<Integer> set = new HashSet<>();
-        int[] firstIsland = new int[2];
-        boolean findOne = false;
+        int firstRow = 0;
+        int firstCol = 0;
+        A:
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (A[i][j] == 1) {
                     merge(A, i, j, set);
-                    firstIsland[0] = i;
-                    firstIsland[1] = j;
-                    findOne = true;
-                    break;
+                    firstRow = i;
+                    firstCol = j;
+                    break A;
                 }
-            }
-            if (findOne) {
-                break;
             }
         }
         boolean[][] visited = new boolean[n][n];
         boolean[][] checked = new boolean[n][n];
         LinkedList<int[]> q = new LinkedList<>();
-        int min = Integer.MAX_VALUE;
         int[] array3 = new int[3];
-        array3[0] = firstIsland[0];
-        array3[1] = firstIsland[1];
+        array3[0] = firstRow;
+        array3[1] = firstCol;
         array3[2] = -1;
-        q.add(array3);
-        checked[firstIsland[0]][firstIsland[1]] = true;
+        q.offer(array3);
+        checked[firstRow][firstCol] = true;
+        int result = 0;
         while (!q.isEmpty()) {
             int[] array = q.poll();
             int i = array[0];
             int j = array[1];
-
-
             visited[i][j] = true;
             int currentD = array[2];
             if (i < n - 1) {
-                if (!visited[i + 1][j]) {
-                    int indexDown = n * (i + 1) + j;
-                    if (!set.contains(indexDown)) {
-                        if (A[i + 1][j] == 1) {
-                            if (currentD + 1 < min) {
-                                min = currentD + 1;
-                                break;
-                            }
-                        } else {
-                            if (!checked[i + 1][j]) {
-                                int[] a3 = new int[3];
-                                a3[0] = i + 1;
-                                a3[1] = j;
-                                a3[2] = currentD + 1;
-                                q.add(a3);
-                                checked[i + 1][j] = true;
-                            }
-                        }
-                    } else {
-                        if (!checked[i + 1][j]) {
-                            int[] a3 = new int[3];
-                            a3[0] = i + 1;
-                            a3[1] = j;
-                            a3[2] = -1;
-                            q.addFirst(a3);
-                            checked[i + 1][j] = true;
-                        }
-                    }
+                result = enqueue(i + 1, j, q, set, visited, checked, n, A, currentD);
+                if (result > 0) {
+                    return result;
                 }
             }
             if (j >= 1) {
-                if (!visited[i][j - 1]) {
-                    int indexDown = n * (i) + j - 1;
-                    if (!set.contains(indexDown)) {
-                        if (A[i][j - 1] == 1) {
-                            if (currentD + 1 < min) {
-                                min = currentD + 1;
-                                break;
-                            }
-                        } else {
-                            if (!checked[i][j - 1]) {
-                                int[] a3 = new int[3];
-                                a3[0] = i;
-                                a3[1] = j - 1;
-                                a3[2] = currentD + 1;
-                                q.add(a3);
-                                checked[i][j - 1] = true;
-                            }
-                        }
-                    } else {
-                        if (!checked[i][j - 1]) {
-                            int[] a3 = new int[3];
-                            a3[0] = i;
-                            a3[1] = j - 1;
-                            a3[2] = -1;
-                            q.addFirst(a3);
-                            checked[i][j - 1] = true;
-                        }
-                    }
+                result = enqueue(i, j - 1, q, set, visited, checked, n, A, currentD);
+                if (result > 0) {
+                    return result;
                 }
             }
             if (j < n - 1) {
-                if (!visited[i][j + 1]) {
-                    int indexDown = n * (i) + j + 1;
-                    if (!set.contains(indexDown)) {
-                        if (A[i][j + 1] == 1) {
-                            if (currentD + 1 < min) {
-                                min = currentD + 1;
-                                break;
-                            }
-                        } else {
-                            if (!checked[i][j + 1]) {
-                                int[] a3 = new int[3];
-                                a3[0] = i;
-                                a3[1] = j + 1;
-                                a3[2] = currentD + 1;
-                                q.add(a3);
-                                checked[i][j + 1] = true;
-                            }
-                        }
-                    } else {
-                        if (!checked[i][j + 1]) {
-                            int[] a3 = new int[3];
-                            a3[0] = i;
-                            a3[1] = j + 1;
-                            a3[2] = -1;
-                            q.addFirst(a3);
-                            checked[i][j + 1] = true;
-                        }
-                    }
+                result = enqueue(i, j + 1, q, set, visited, checked, n, A, currentD);
+                if (result > 0) {
+                    return result;
                 }
             }
         }
-        return min;
+        return result;
     }
 
     private void merge(int[][] A, int i, int j, Set<Integer> set) {
@@ -154,5 +74,31 @@ public class ShortestBridge {
         merge(A, i + 1, j, set);
         merge(A, i, j - 1, set);
         merge(A, i, j + 1, set);
+    }
+
+    private int enqueue(int i, int j, LinkedList<int[]> q, Set<Integer> set, boolean[][] visited, boolean[][] checked, int n, int[][] A, int currentD) {
+        if (!visited[i][j]) {
+            int indexDown = n * (i) + j;
+            if (!set.contains(indexDown)) {
+                if (A[i][j] == 1) {
+                    return currentD + 1;
+                } else if (!checked[i][j]) {
+                    int[] a3 = new int[3];
+                    a3[0] = i;
+                    a3[1] = j;
+                    a3[2] = currentD + 1;
+                    q.offer(a3);
+                    checked[i][j] = true;
+                }
+            } else if (!checked[i][j]) {
+                int[] a3 = new int[3];
+                a3[0] = i;
+                a3[1] = j;
+                a3[2] = -1;
+                q.offerFirst(a3);
+                checked[i][j] = true;
+            }
+        }
+        return -1;
     }
 }
