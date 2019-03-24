@@ -19,13 +19,11 @@ public class CheapestFlightsWithKStops {
         if (!map.containsKey(src)) {
             return -1;
         }
-        boolean[] checked = new boolean[n];
         LinkedList<int[]> q = new LinkedList<>();
         int[] a3 = new int[3];
         a3[0] = src;
         a3[1] = K;
         a3[2] = 0;
-        checked[src] = true;
         q.offer(a3);
         int min = Integer.MAX_VALUE;
         while (!q.isEmpty()) {
@@ -34,6 +32,9 @@ public class CheapestFlightsWithKStops {
             int stops = a[1];
             int price = a[2];
             stops--;
+            if (stops < -1) {
+                continue;
+            }
             if (!map.containsKey(srcCity)) {
                 continue;
             }
@@ -41,15 +42,14 @@ public class CheapestFlightsWithKStops {
             for (int[] a2 : array) {
                 int dstCity = a2[1];
                 if (dstCity == dst) {
-                    if (stops >= -2 && a2[2] + price < min) {
+                    if (a2[2] + price < min) {
                         min = a2[2] + price;
                     }
-                } else if (!checked[a2[1]]) {
+                } else {
                     int[] a5 = new int[3];
                     a5[0] = a2[1];
                     a5[1] = stops;
                     a5[2] = a2[2] + price;
-                    checked[a2[1]] = true;
                     q.offer(a5);
                 }
             }
